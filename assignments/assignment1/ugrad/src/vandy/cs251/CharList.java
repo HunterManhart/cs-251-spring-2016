@@ -59,10 +59,7 @@ public class CharList
             Node here = head;
             for(int i=0; i<size; i++){
                 new Node(defaultValue, here);
-                //new Node(here);
                 here = here.next;
-                here.data = defaultValue;
-                //System.out.print(here.data + "\n");
             }
         }
     }
@@ -73,15 +70,15 @@ public class CharList
      * @param s The CharList to be copied.
      */
     public CharList(CharList s) {
-        head = new Node();
         head.data = s.head.data;
         this.size = s.size();
+        this.defValue = s.defValue;
         Node here = head;
         Node there = s.head;
         for(int i=1; i<s.size(); i++){
             there = there.next;
-            Node follow = new Node(s.head.data, here);
-            here = follow;
+            new Node(there.data, here);
+            here = here.next;
         }
     }
 
@@ -128,9 +125,8 @@ public class CharList
                 last = head;
             }
             for(int i = size(); i<size; i++){
-                Node tmp = new Node(last);
-                tmp.data = defValue;
-                last = tmp;
+                new Node(defValue, last);
+                last = last.next;
             }
         }else{
             Node last;
@@ -192,9 +188,15 @@ public class CharList
      */
     @Override
     public int compareTo(CharList s) {
-        // TODO - you fill in here (replace return 0 with right
-        // implementation).
-	    return 0;
+        for(int i=0; i<Math.min(size(), s.size()); i++){
+            char here = get(i);
+            char there = s.get(i);
+            if(here != there){
+                return here - there;
+            }
+        }
+        int result = size() - s.size();
+	    return result;
     }
 
     /**
@@ -239,9 +241,9 @@ public class CharList
          * Construct a Node from a @a value and a @a prev Node.
          */
         Node(char value, Node prev) {
-            Node here = new Node(prev);
+            new Node(prev);
+            Node here = prev.next;
             here.data = value;
-            //System.out.print(here.data + "\n");
         }
 
         /**
