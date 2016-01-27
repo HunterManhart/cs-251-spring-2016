@@ -22,6 +22,7 @@ public class CharList
     /**
      * Default value for elements in the list.
      */
+    // @@ Please prefix class member variables with 'm'; e.g. mFoo or mBar
     private char defValue;
 
     /**
@@ -33,6 +34,7 @@ public class CharList
         if(size < 0){
             throw new IndexOutOfBoundsException("Size is less than zero");
         }
+	// @@ Delegate to another constructor:
         Node here = head;
         for(int i=0; i<size; i++){
             new Node(here);
@@ -88,6 +90,7 @@ public class CharList
      */
     @Override
     public Object clone() {
+	// @@ This is incorrect:
         return new CharList(this);
     }
 
@@ -117,6 +120,9 @@ public class CharList
         }
         else if(size() < size){
             Node last;
+
+	    // @@ This is *way* too complicated - too many special cases.
+	    // @@ Use a dummy node to simplify:
             if(size() != 0){
                 last = seek(size()-1);
             }else{
@@ -189,6 +195,7 @@ public class CharList
     @Override
     public int compareTo(CharList s) {
         for(int i=0; i<Math.min(size(), s.size()); i++){
+	    // @@ Very inefficient:  How many times do you visit each node?
             char here = get(i);
             char there = s.get(i);
             if(here != there){
@@ -196,7 +203,7 @@ public class CharList
             }
         }
         int result = size() - s.size();
-	    return result;
+	return result;
     }
 
     /**
@@ -232,6 +239,7 @@ public class CharList
          */
         Node(Node prev) {
             Node there = prev.next;
+	    // @@ You should not be allocating a new node here:
             Node here = new Node();
             here.next = there;
             prev.next = here;
@@ -241,6 +249,7 @@ public class CharList
          * Construct a Node from a @a value and a @a prev Node.
          */
         Node(char value, Node prev) {
+	    // @@ Sam
             new Node(prev);
             Node here = prev.next;
             here.data = value;
