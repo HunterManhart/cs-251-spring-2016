@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce91a2ed-be84-479b-9ed9-cdc349fc4ea8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/junit_junit_4_11.xml" afterPath="$PROJECT_DIR$/.idea/libraries/junit_junit_4_11.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/vandy/cs251/CharList.java" afterPath="$PROJECT_DIR$/src/vandy/cs251/CharList.java" />
     </list>
     <ignored path="Assignment 1.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,16 +30,14 @@
         <entry file="file://$PROJECT_DIR$/src/vandy/cs251/CharList.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="76" column="22" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="22" />
+              <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
               <folding>
-                <element signature="e#2324#2325#0" expanded="true" />
-                <element signature="e#2365#2366#0" expanded="true" />
-                <element signature="e#2451#2452#0" expanded="true" />
-                <element signature="e#2480#2481#0" expanded="true" />
-                <element signature="e#4142#4143#0" expanded="true" />
-                <element signature="e#4181#4182#0" expanded="true" />
-                <element signature="e#4529#4530#0" expanded="true" />
-                <element signature="e#4569#4570#0" expanded="true" />
+                <element signature="e#750#751#0" expanded="true" />
+                <element signature="e#786#787#0" expanded="true" />
+                <element signature="e#2363#2364#0" expanded="true" />
+                <element signature="e#2388#2389#0" expanded="true" />
+                <element signature="e#3812#3813#0" expanded="true" />
+                <element signature="e#3851#3852#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -48,7 +46,7 @@
       <file leaf-file-name="CharListTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/vandy/cs251/CharListTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19547325">
+            <state vertical-scroll-proportion="0.48971194">
               <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -72,9 +70,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,8 +91,8 @@
         <option value="$PROJECT_DIR$/test/vandy/cs251/CharArrayTest.java" />
         <option value="$PROJECT_DIR$/src/vandy/cs251/CharArray.java" />
         <option value="$PROJECT_DIR$/test/vandy/cs251/AllTests.java" />
-        <option value="$PROJECT_DIR$/src/vandy/cs251/CharList.java" />
         <option value="$PROJECT_DIR$/test/vandy/cs251/CharListTest.java" />
+        <option value="$PROJECT_DIR$/src/vandy/cs251/CharList.java" />
       </list>
     </option>
   </component>
@@ -246,32 +242,6 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="CharListTest.test_DefaultValueConstructor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="vandy.cs251.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="ugrad" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="vandy.cs251" />
-      <option name="MAIN_CLASS_NAME" value="vandy.cs251.CharListTest" />
-      <option name="METHOD_NAME" value="test_DefaultValueConstructor" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-      <method />
-    </configuration>
     <configuration default="false" name="CharListTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -337,6 +307,32 @@
       <option name="PACKAGE_NAME" value="vandy.cs251" />
       <option name="MAIN_CLASS_NAME" value="vandy.cs251.CharListTest" />
       <option name="METHOD_NAME" value="test_CompareTo" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+      <method />
+    </configuration>
+    <configuration default="false" name="CharListTest.test_SetGet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="vandy.cs251.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="ugrad" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="vandy.cs251" />
+      <option name="MAIN_CLASS_NAME" value="vandy.cs251.CharListTest" />
+      <option name="METHOD_NAME" value="test_SetGet" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -607,18 +603,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.CharListTest.test_Resize" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.CharListTest.test_DefaultValueConstructor" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.CharListTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.CharListTest.test_CopyConstructor" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.CharListTest.test_CompareTo" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.CharListTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.CharListTest.test_CopyConstructor" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.CharListTest.test_CompareTo" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.CharListTest.test_SetGet" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="JUnit.CharListTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.CharListTest.test_CopyConstructor" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.CharListTest.test_CompareTo" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.CharListTest.test_Resize" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.CharListTest.test_DefaultValueConstructor" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.CharListTest.test_SetGet" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.CharListTest.test_CopyConstructor" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.CharListTest.test_CompareTo" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.CharListTest.test_Resize" />
       </list>
     </recent_temporary>
   </component>
@@ -643,35 +639,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CharListTest - 2016.01.22 at 19h 55m 28s.xml">
+    <history-entry file="CharListTest - 2016.01.28 at 11h 46m 40s.xml">
       <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CharListTest - 2016.01.22 at 19h 57m 35s.xml">
+    <history-entry file="CharListTest - 2016.01.28 at 11h 47m 16s.xml">
       <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CharListTest - 2016.01.22 at 20h 07m 35s.xml">
+    <history-entry file="CharListTest - 2016.01.28 at 11h 48m 01s.xml">
       <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CharListTest - 2016.01.22 at 20h 10m 26s.xml">
+    <history-entry file="CharListTest - 2016.01.28 at 11h 50m 35s.xml">
       <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CharListTest - 2016.01.22 at 20h 11m 15s.xml">
+    <history-entry file="CharListTest - 2016.01.28 at 11h 51m 53s.xml">
       <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CharListTest_test_CompareTo - 2016.01.22 at 20h 05m 26s.xml">
-      <configuration name="CharListTest.test_CompareTo" configurationId="JUnit" />
+    <history-entry file="CharListTest - 2016.01.28 at 11h 52m 38s.xml">
+      <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CharListTest_test_CompareTo - 2016.01.22 at 20h 06m 14s.xml">
-      <configuration name="CharListTest.test_CompareTo" configurationId="JUnit" />
+    <history-entry file="CharListTest - 2016.01.31 at 13h 18m 46s.xml">
+      <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CharListTest_test_CopyConstructor - 2016.01.22 at 20h 09m 23s.xml">
-      <configuration name="CharListTest.test_CopyConstructor" configurationId="JUnit" />
+    <history-entry file="CharListTest - 2016.01.31 at 13h 21m 55s.xml">
+      <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CharListTest_test_CopyConstructor - 2016.01.22 at 20h 10m 20s.xml">
-      <configuration name="CharListTest.test_CopyConstructor" configurationId="JUnit" />
+    <history-entry file="CharListTest - 2016.01.31 at 13h 23m 59s.xml">
+      <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CharListTest_test_Resize - 2016.01.22 at 19h 53m 42s.xml">
-      <configuration name="CharListTest.test_Resize" configurationId="JUnit" />
+    <history-entry file="CharListTest - 2016.01.31 at 13h 24m 29s.xml">
+      <configuration name="CharListTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
@@ -692,6 +688,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -702,7 +699,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -734,15 +730,31 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2324#2325#0" expanded="true" />
-            <element signature="e#2365#2366#0" expanded="true" />
-            <element signature="e#2451#2452#0" expanded="true" />
-            <element signature="e#2480#2481#0" expanded="true" />
-            <element signature="e#4142#4143#0" expanded="true" />
-            <element signature="e#4181#4182#0" expanded="true" />
-            <element signature="e#4529#4530#0" expanded="true" />
-            <element signature="e#4569#4570#0" expanded="true" />
+            <element signature="e#750#751#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#2363#2364#0" expanded="true" />
+            <element signature="e#2388#2389#0" expanded="true" />
+            <element signature="e#3812#3813#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/vandy/cs251/CharListTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.classpath">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -750,30 +762,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/vandy/cs251/CharList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="88" column="7" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
+          <caret line="76" column="22" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="22" />
           <folding>
-            <element signature="e#2324#2325#0" expanded="true" />
-            <element signature="e#2365#2366#0" expanded="true" />
-            <element signature="e#2451#2452#0" expanded="true" />
-            <element signature="e#2480#2481#0" expanded="true" />
-            <element signature="e#4142#4143#0" expanded="true" />
-            <element signature="e#4181#4182#0" expanded="true" />
-            <element signature="e#4529#4530#0" expanded="true" />
-            <element signature="e#4569#4570#0" expanded="true" />
+            <element signature="e#750#751#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#2363#2364#0" expanded="true" />
+            <element signature="e#2388#2389#0" expanded="true" />
+            <element signature="e#3812#3813#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/vandy/cs251/AllTests.java">
+    <entry file="file://$PROJECT_DIR$/test/vandy/cs251/CharListTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -791,28 +799,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/Assert.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3529412">
-          <caret line="295" column="0" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/vandy/cs251/AllTests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/rules/ExpectedException.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.6666665">
-          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -820,23 +810,97 @@
     <entry file="file://$PROJECT_DIR$/src/vandy/cs251/CharList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="76" column="22" selection-start-line="76" selection-start-column="21" selection-end-line="76" selection-end-column="22" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2324#2325#0" expanded="true" />
-            <element signature="e#2365#2366#0" expanded="true" />
-            <element signature="e#2451#2452#0" expanded="true" />
-            <element signature="e#2480#2481#0" expanded="true" />
-            <element signature="e#4142#4143#0" expanded="true" />
-            <element signature="e#4181#4182#0" expanded="true" />
-            <element signature="e#4529#4530#0" expanded="true" />
-            <element signature="e#4569#4570#0" expanded="true" />
+            <element signature="e#750#751#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#2363#2364#0" expanded="true" />
+            <element signature="e#2388#2389#0" expanded="true" />
+            <element signature="e#3812#3813#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/vandy/cs251/AllTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vandy/cs251/CharList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="88" column="7" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="7" />
+          <folding>
+            <element signature="e#750#751#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#2363#2364#0" expanded="true" />
+            <element signature="e#2388#2389#0" expanded="true" />
+            <element signature="e#3812#3813#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/vandy/cs251/AllTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.classpath">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/Assert.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3529412">
+          <caret line="295" column="0" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/vandy/cs251/AllTests.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/rules/ExpectedException.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6666665">
+          <caret line="84" column="0" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/vandy/cs251/CharList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
+          <folding>
+            <element signature="e#750#751#0" expanded="true" />
+            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#2363#2364#0" expanded="true" />
+            <element signature="e#2388#2389#0" expanded="true" />
+            <element signature="e#3812#3813#0" expanded="true" />
+            <element signature="e#3851#3852#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/vandy/cs251/CharListTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19547325">
+        <state vertical-scroll-proportion="0.48971194">
           <caret line="14" column="27" selection-start-line="14" selection-start-column="27" selection-end-line="14" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />

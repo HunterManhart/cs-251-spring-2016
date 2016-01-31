@@ -12,18 +12,18 @@ public class CharList
     /**
      * The head of the list.
      */
-    private Node head = new Node();
+    private Node mHead;
 
     /**
      * The current size of the list.
      */
-    private int size;
+    private int mSize;
 
     /**
      * Default value for elements in the list.
      */
     // @@ Please prefix class member variables with 'm'; e.g. mFoo or mBar
-    private char defValue;
+    private char mDefault;
 
     /**
      * Constructs an list of the given size.
@@ -31,16 +31,7 @@ public class CharList
      * @param size Non-negative integer size of the desired list.
      */
     public CharList(int size) {
-        if(size < 0){
-            throw new IndexOutOfBoundsException("Size is less than zero");
-        }
-	// @@ Delegate to another constructor:
-        Node here = head;
-        for(int i=0; i<size; i++){
-            new Node(here);
-            here = here.next;
-        }
-        this.size = size;
+        this(size, '\u0000');
     }
 
     /**
@@ -54,16 +45,18 @@ public class CharList
     public CharList(int size, char defaultValue) {
         if(size<0){
             throw new IndexOutOfBoundsException("Size is less than zero");
-        }else{
-            this.defValue = defaultValue;
-            this.size = size;
-            head.data = defaultValue;
-            Node here = head;
+        }else if(size > 0){
+            mHead = new Node();
+            mHead.data = defaultValue;
+            Node here = mHead;
             for(int i=0; i<size; i++){
                 new Node(defaultValue, here);
                 here = here.next;
             }
         }
+
+        mDefault = defaultValue;
+        mSize = size;
     }
 
     /**
@@ -72,11 +65,12 @@ public class CharList
      * @param s The CharList to be copied.
      */
     public CharList(CharList s) {
-        head.data = s.head.data;
-        this.size = s.size();
-        this.defValue = s.defValue;
-        Node here = head;
-        Node there = s.head;
+        mHead = new Node();
+        mHead.data = s.mHead.data;
+        mSize = s.size();
+        mDefault = s.mDefault;
+        Node here = mHead;
+        Node there = s.mHead;
         for(int i=1; i<s.size(); i++){
             there = there.next;
             new Node(there.data, here);
@@ -98,7 +92,7 @@ public class CharList
      * @return The current size of the list.
      */
     public int size() {
-    	return this.size;
+    	return mSize;
     }
 
     /**
@@ -116,37 +110,27 @@ public class CharList
      */
     public void resize(int size) {
         if(size < 0){
-            throw new IndexOutOfBoundsException("Size is less than zero");
+            throw new NegativeArraySizeException("Size is less than zero");
         }
-        else if(size() < size){
-            Node last;
 
-	    // @@ This is *way* too complicated - too many special cases.
-	    // @@ Use a dummy node to simplify:
-            if(size() != 0){
-                last = seek(size()-1);
-            }else{
-                head = new Node();
-                head.data = defValue;
-                last = head;
-            }
+        Node last;
+        if(size() != 0){
+            last = seek(size()-1);
+        }else{
+            mHead = new Node();
+            mHead.data = mDefault;
+            last = mHead;
+        }
+
+        if(size() < size){
             for(int i = size(); i<size; i++){
-                new Node(defValue, last);
+                new Node(mDefault, last);
                 last = last.next;
             }
-        }else{
-            Node last;
-            if(size() != 0){
-                if(size !=0){
-                    last = seek(size-1);
-                    last.prune();
-                }else{
-                    head.prune();
-                }
-
-            }
+        }else if(size() > size){
+            last.prune();
         }
-        this.size = size;
+        mSize = size;
     }
 
     /**
@@ -175,7 +159,7 @@ public class CharList
      */
     private Node seek(int index) {
         rangeCheck(index);
-        Node tmp = head;
+        Node tmp = mHead;
         for(int i=0; i<index; i++){
             tmp = tmp.next;
         }
@@ -194,13 +178,14 @@ public class CharList
      */
     @Override
     public int compareTo(CharList s) {
+        Node here = mHead;
+        Node there = s.mHead;
         for(int i=0; i<Math.min(size(), s.size()); i++){
-	    // @@ Very inefficient:  How many times do you visit each node?
-            char here = get(i);
-            char there = s.get(i);
-            if(here != there){
-                return here - there;
+            if(here.data != there.data){
+                return here.data - there.data;
             }
+            here = here.next;
+            there = there.next;
         }
         int result = size() - s.size();
 	return result;
@@ -210,7 +195,7 @@ public class CharList
      * Throws an exception if the index is out of bound.
      */
     private void rangeCheck(int index) {
-        if(index >= size || index < 0)
+        if(index >= mSize || index < 0)
             throw new IndexOutOfBoundsException("Index isn't with range");
     }
 
@@ -238,21 +223,17 @@ public class CharList
          * Construct a Node from a @a prev Node.
          */
         Node(Node prev) {
-            Node there = prev.next;
-	    // @@ You should not be allocating a new node here:
-            Node here = new Node();
-            here.next = there;
-            prev.next = here;
+            this();
+            next = prev.next;
+            prev.next = this;
         }
 
         /**
          * Construct a Node from a @a value and a @a prev Node.
          */
         Node(char value, Node prev) {
-	    // @@ Sam
-            new Node(prev);
-            Node here = prev.next;
-            here.data = value;
+            this(prev);
+            data = value;
         }
 
         /**
@@ -260,14 +241,11 @@ public class CharList
          */
         void prune() {
             Node second = this.next;
-            while(second.next != null){
+            while(second != null){
                 Node tmp = second;
                 second = second.next;
                 tmp.next = null;
             }
-            // Leaving the list fully linked could *potentially* cause
-            // a pathological performance issue for the garbage
-            // collector.
         }
     }
 }
