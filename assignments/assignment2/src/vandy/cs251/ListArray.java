@@ -8,8 +8,8 @@ import java.util.NoSuchElementException;
  * Provides a generic dynamically-(re)sized array abstraction.
  */
 public class ListArray<T extends Comparable<T>>
-             implements Comparable<ListArray<T>>,
-                        Iterable<T> {
+        implements Comparable<ListArray<T>>,
+        Iterable<T> {
     /**
      * The underlying list of type T.
      */
@@ -49,7 +49,6 @@ public class ListArray<T extends Comparable<T>>
         if(size < 0)
             throw new NegativeArraySizeException("Size is less than zero");
 
-
     }
 
     /**
@@ -78,16 +77,6 @@ public class ListArray<T extends Comparable<T>>
     }
 
     /**
-<<<<<<< HEAD
-     * @return The current maximum capacity of the array withough
-     */
-    public int capacity() {
-        return mSize;
-    }
-
-    /**
-=======
->>>>>>> 0fd9ba846d124c5759dd20c75af667f504819c08
      * Resizes the array to the requested size.
      *
      * Changes the size of this ListArray to hold the requested number of elements.
@@ -178,7 +167,7 @@ public class ListArray<T extends Comparable<T>>
      */
     @Override
     public int compareTo(ListArray<T> s) {
-//        for(int i=0; i<Math.min(size(), s.size()); i++){
+        //        for(int i=0; i<Math.min(size(), s.size()); i++){
 //            if(mList[i] != s.mList[i]){
 //                return mList[i] - s.mList[i];
 //            }
@@ -187,8 +176,8 @@ public class ListArray<T extends Comparable<T>>
         return result;
     }
 
-    /** 
-     * Throws an exception if the index is out of bound. 
+    /**
+     * Throws an exception if the index is out of bound.
      */
     private void rangeCheck(int index) {
         if(index < 0 || index >= mSize){
@@ -200,11 +189,11 @@ public class ListArray<T extends Comparable<T>>
      * Factory method that returns an Iterator.
      */
     public Iterator<T> iterator() {
+        // TODO - you fill in here (replace null with proper return value).
         return new ListIterator();
     }
 
     private class Node implements Iterable<Node> {
-
         T nData;
 
         Node nNext;
@@ -253,6 +242,7 @@ public class ListArray<T extends Comparable<T>>
     private class NodeIterator implements Iterator<Node> {
 
         private Node iHead = new Node();
+
 
         /**
          * Returns {@code true} if the iteration has more elements.
@@ -309,7 +299,6 @@ public class ListArray<T extends Comparable<T>>
     private class ListIterator implements Iterator<T> {
 
         private NodeIterator iList = new NodeIterator();
-
 
         /**
          * Returns the next element in the iteration.
