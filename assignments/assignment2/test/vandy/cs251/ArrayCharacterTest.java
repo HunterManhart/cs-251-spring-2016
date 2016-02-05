@@ -85,7 +85,7 @@ public class ArrayCharacterTest {
 
         tmp.resize(5);
 
-        tmp_c = (ListArray<Character>) tmp.clone ();
+        tmp_c = (ListArray<Character>) tmp.clone();
 
         assertEquals(tmp.size(), tmp_c.size());
         assertEquals(0, tmp.compareTo(tmp_c));

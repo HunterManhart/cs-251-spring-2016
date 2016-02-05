@@ -13,17 +13,17 @@ public class ListArray<T extends Comparable<T>>
     /**
      * The underlying list of type T.
      */
-    // TODO - you fill in here.
+    private Node mHead;
 
     /**
      * The current size of the array.
      */
-    // TODO - you fill in here.
+    private int mSize;
 
     /**
      * Default value for elements in the array.
      */
-    // TODO - you fill in here.
+    private T mDef;
 
     /**
      * Constructs an array of the given size.
@@ -46,7 +46,10 @@ public class ListArray<T extends Comparable<T>>
      */
     public ListArray(int size,
                      T defaultValue) throws NegativeArraySizeException {
-        // TODO - you fill in here.
+        if(size < 0)
+            throw new NegativeArraySizeException("Size is less than zero");
+
+
     }
 
     /**
@@ -54,26 +57,31 @@ public class ListArray<T extends Comparable<T>>
      * @param s The array to be copied.
      */
     public ListArray(ListArray<T> s) {
-        // TODO - you fill in here.
-
+        mHead = new Node();
+        mHead.nData = s.mHead.nData;
+        mSize = s.size();
+        mDef = s.mDef;
+        Node here = mHead;
+        Node there = s.mHead;
+        for(int i=1; i<s.size(); i++){
+            there = there.nNext;
+            new Node(there.nData, here);
+            here = here.nNext;
+        }
     }
 
     /**
      * @return The current size of the array.
      */
     public int size() {
-        // TODO - you fill in here (replace 0 with proper return
-        // value).
-        return 0;
+        return mSize;
     }
 
     /**
      * @return The current maximum capacity of the array withough
      */
     public int capacity() {
-        // TODO - you fill in here (replace 0 with proper return
-        // value).
-        return 0;
+        return mSize;
     }
 
     /**
@@ -90,7 +98,27 @@ public class ListArray<T extends Comparable<T>>
      * @param size Nonnegative requested new size.
      */
     public void resize(int size) {
-        // TODO - you fill in here.
+        if(size < 0)
+            throw new NegativeArraySizeException("Size is less than zero");
+
+//        Node last;
+//        if(size() != 0){
+//            last = seek(size()-1);
+//        }else{
+//            mHead = new Node();
+//            mHead.data = mDefault;
+//            last = mHead;
+//        }
+//
+//        if(size() < size){
+//            for(int i = size(); i<size; i++){
+//                new Node(mDefault, last);
+//                last = last.next;
+//            }
+//        }else if(size() > size){
+//            last.prune();
+//        }
+//        mSize = size;
     }
 
     /**
@@ -100,8 +128,7 @@ public class ListArray<T extends Comparable<T>>
      * current bounds of the array.
      */
     public T get(int index) {
-        // TODO - you fill in here (replace null with proper return
-        // value).
+        rangeCheck(index);
         return null;
     }
 
@@ -113,7 +140,10 @@ public class ListArray<T extends Comparable<T>>
      * current bounds of the array.
      */
     public void set(int index, T value) {
-        // TODO - you fill in here.
+        rangeCheck(index);
+
+        T tmp = get(index);
+        tmp = value;
     }
 
     /**
@@ -126,9 +156,14 @@ public class ListArray<T extends Comparable<T>>
      * @throws ArrayIndexOutOfBoundsException if the index is out of range.
      */
     public T remove(int index) {
-        // TODO - you fill in here (replace null with proper return
-        // value).
-        return null;
+        rangeCheck(index);
+
+        T tmp = get(index);
+        for(int i=index; i<mSize; i++){
+
+        }
+        mSize--;
+        return tmp;
     }
 
     /**
@@ -142,70 +177,81 @@ public class ListArray<T extends Comparable<T>>
      */
     @Override
     public int compareTo(ListArray<T> s) {
-        // TODO - you fill in here (replace 0 with proper return
-        // value).
-        return 0;
+//        for(int i=0; i<Math.min(size(), s.size()); i++){
+//            if(mList[i] != s.mList[i]){
+//                return mList[i] - s.mList[i];
+//            }
+//        }
+        int result = size() - s.size();
+        return result;
     }
 
     /** 
      * Throws an exception if the index is out of bound. 
      */
     private void rangeCheck(int index) {
-        // TODO - you fill in here.
+        if(index < 0 || index >= mSize){
+            throw new ArrayIndexOutOfBoundsException("Index is not within range");
+        }
     }
 
     /**
      * Factory method that returns an Iterator.
      */
     public Iterator<T> iterator() {
-        // TODO - you fill in here (replace null with proper return value).
         return new ListIterator();
     }
 
     private class Node implements Iterable<Node> {
-        // TODO: Fill in any fields you require.
+
+        T nData;
+
+        Node nNext;
 
         /**
          * Default constructor (no op).
          */
         Node() {
-            // TODO - you fill in here.
         }
 
         /**
          * Construct a Node from a @a prev Node.
          */
         Node(Node prev) {
-            // TODO - you fill in here.
-
+            this();
+            nNext = prev.nNext;
+            prev.nNext = this;
         }
 
         /**
          * Construct a Node from a @a value and a @a prev Node.
          */
         Node(T value, Node prev) {
-            // TODO - you fill in here.
-
+            this(prev);
+            nData = value;
         }
 
         /**
          * Ensure all subsequent nodes are properly deallocated.
          */
         void prune() {
-            // TODO - you fill in here.
-
+            Node second = this.nNext;
+            while(second != null){
+                Node tmp = second;
+                second = second.nNext;
+                tmp.nNext = null;
+            }
         }
 
         @Override
         public Iterator<Node> iterator() {
-            // TODO - you fill in here.
-            return null;
+            return new NodeIterator();
         }
     }
 
     private class NodeIterator implements Iterator<Node> {
-        // TODO: Fill in any fields you require.
 
+        private Node iHead = new Node();
 
         /**
          * Returns {@code true} if the iteration has more elements.
@@ -216,7 +262,7 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public boolean hasNext() {
-            return false;
+            return iHead.nNext != null;
         }
 
         /**
@@ -227,7 +273,10 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public Node next() {
-            return null;
+            if(!hasNext())
+                throw new NoSuchElementException("Node doesn't exist");
+            iHead = iHead.nNext;
+            return iHead;
         }
 
         /**
@@ -257,7 +306,8 @@ public class ListArray<T extends Comparable<T>>
      * @brief This class implements an iterator for the list.
      */
     private class ListIterator implements Iterator<T> {
-        // TODO: Fill in any fields you require.
+
+        private NodeIterator iList = new NodeIterator();
 
 
         /**
@@ -268,7 +318,7 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public T next() {
-            return null;
+            return iList.next().nData;
         }
 
         /**
@@ -290,7 +340,7 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public void remove() {
-
+            iList.remove();
         }
 
         /**
@@ -302,7 +352,7 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public boolean hasNext() {
-            return false;
+            return iList.hasNext();
         }
     }
 }
