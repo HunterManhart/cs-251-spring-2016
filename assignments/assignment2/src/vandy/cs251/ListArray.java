@@ -53,6 +53,7 @@ public class ListArray<T extends Comparable<T>>
         mHead.data = defaultValue;
         Node here = mHead;
         for(int i=0; i<size; i++){
+	    // @@ Consider building the list backwards.
             new Node(defaultValue, here);
             here = here.next;
         }
@@ -72,6 +73,7 @@ public class ListArray<T extends Comparable<T>>
         mDef = s.mDef;
         Node here = mHead;
         Node there = s.mHead;
+	// @@ consider using an iterator?
         for(int i=1; i<s.size(); i++){
             there = there.next;
             new Node(there.data, here);
@@ -100,6 +102,7 @@ public class ListArray<T extends Comparable<T>>
         if(size() != 0){
             last = seek(size()-1);
         }else{
+	    // @@ do you need to allocate a new node here?
             mHead = new Node();
             mHead.data = mDef;
             last = mHead;
@@ -168,6 +171,7 @@ public class ListArray<T extends Comparable<T>>
         }
 
         it.remove();
+	// @@ Shouldn't remove do this?
         mSize--;
         return tmp;
     }
@@ -186,6 +190,7 @@ public class ListArray<T extends Comparable<T>>
         Node here = mHead;
         Node there = s.mHead;
         for(int i=0; i<Math.min(size(), s.size()); i++){
+	    // @@ Careful, this doesn't do what you expect:
             if(here.data != there.data){
                 return here.data.compareTo(there.data);
             }
@@ -213,7 +218,7 @@ public class ListArray<T extends Comparable<T>>
     }
 
     private class Node implements Iterable<Node> {
-
+	// @@ Please prefix class member variables with 'm'; e.g. mFoo or mBar
         T data;
 
         Node next;
@@ -228,6 +233,7 @@ public class ListArray<T extends Comparable<T>>
          * Construct a Node from a @a prev Node.
          */
         Node(Node prev) {
+	    // @@ This isn't necessary:
             this();
             next = prev.next;
             prev.next = this;
