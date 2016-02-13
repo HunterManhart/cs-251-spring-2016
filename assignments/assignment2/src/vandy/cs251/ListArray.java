@@ -13,7 +13,10 @@ public class ListArray<T extends Comparable<T>>
     /**
      * The underlying list of type T.
      */
-    private Node mHead;
+    // dummy node
+    // positive: simplifies iterators, constructors, and copy constructors
+    // negative: need if statements to get mHead in resize
+    private Node mHead = new Node();
 
     /**
      * The current size of the array.
@@ -49,13 +52,13 @@ public class ListArray<T extends Comparable<T>>
         if(size < 0)
             throw new NegativeArraySizeException("Size is less than zero");
 
-        mHead = new Node();
-        mHead.data = defaultValue;
         Node here = mHead;
         for(int i=0; i<size; i++){
 	    // @@ Consider building the list backwards.
+            // Why? then I can't use this constructor and have to fencepost the mHead being connected at the end.
+            // This would appear to only complicate code
             new Node(defaultValue, here);
-            here = here.next;
+            here = here.mNext;
         }
 
         mDef = defaultValue;
@@ -67,17 +70,17 @@ public class ListArray<T extends Comparable<T>>
      * @param s The array to be copied.
      */
     public ListArray(ListArray<T> s) {
-        mHead = new Node();
-        mHead.data = s.mHead.data;
         mSize = s.size();
         mDef = s.mDef;
+
+        Iterator<T> it = s.iterator();
+        T there;
         Node here = mHead;
-        Node there = s.mHead;
-	// @@ consider using an iterator?
-        for(int i=1; i<s.size(); i++){
-            there = there.next;
-            new Node(there.data, here);
-            here = here.next;
+
+        for(int i=0; i<s.size(); i++){
+            there = it.next();
+            new Node(there, here);
+            here = here.mNext;
         }
     }
 
@@ -99,23 +102,21 @@ public class ListArray<T extends Comparable<T>>
             throw new NegativeArraySizeException("Size is less than zero");
 
         Node last;
-        if(size() != 0){
-            last = seek(size()-1);
-        }else{
-	    // @@ do you need to allocate a new node here?
-            mHead = new Node();
-            mHead.data = mDef;
-            last = mHead;
-        }
 
         if(size() < size){
+            last = size() != 0 ? seek(size()-1) : mHead; // complicated bc dummy node
+
             for(int i = size(); i<size; i++){
                 new Node(mDef, last);
-                last = last.next;
+                last = last.mNext;
             }
-        }else if(size() > size){
+        }
+        else if(size() > size){
+            last = size != 0 ? seek(size-1) : mHead;
+
             last.prune();
         }
+
         mSize = size;
     }
 
@@ -126,7 +127,7 @@ public class ListArray<T extends Comparable<T>>
      * current bounds of the array.
      */
     public T get(int index) {
-        return seek(index).data;
+        return seek(index).mData;
     }
 
     /**
@@ -139,14 +140,14 @@ public class ListArray<T extends Comparable<T>>
     public void set(int index, T value) {
         rangeCheck(index);
 
-        seek(index).data = value;
+        seek(index).mData = value;
     }
 
     private Node seek(int index) {
         rangeCheck(index);
         Node tmp = mHead;
-        for(int i=0; i<index; i++){
-            tmp = tmp.next;
+        for(int i=0; i<=index; i++){
+            tmp = tmp.mNext;
         }
         return tmp;
     }
@@ -164,15 +165,13 @@ public class ListArray<T extends Comparable<T>>
         rangeCheck(index);
 
         Iterator<T> it = iterator();
-        T tmp = mHead.data;
+        T tmp = mDef;
 
-        for(int i=0; i<index; i++){
+        for(int i=0; i<=index; i++){  // for loop has to run if range check doesn't throw an exception
             tmp = it.next();
         }
 
         it.remove();
-	// @@ Shouldn't remove do this?
-        mSize--;
         return tmp;
     }
 
@@ -190,12 +189,13 @@ public class ListArray<T extends Comparable<T>>
         Node here = mHead;
         Node there = s.mHead;
         for(int i=0; i<Math.min(size(), s.size()); i++){
-	    // @@ Careful, this doesn't do what you expect:
-            if(here.data != there.data){
-                return here.data.compareTo(there.data);
+            here = here.mNext;
+            there = there.mNext;
+
+            int comparison = here.mData.compareTo(there.mData);
+            if(comparison != 0){
+                return comparison;
             }
-            here = here.next;
-            there = there.next;
         }
         int result = size() - s.size();
         return result;
@@ -205,9 +205,8 @@ public class ListArray<T extends Comparable<T>>
      * Throws an exception if the index is out of bound.
      */
     private void rangeCheck(int index) {
-        if(index < 0 || index >= mSize){
+        if(index < 0 || index >= mSize)
             throw new ArrayIndexOutOfBoundsException("Index is not within range");
-        }
     }
 
     /**
@@ -218,10 +217,9 @@ public class ListArray<T extends Comparable<T>>
     }
 
     private class Node implements Iterable<Node> {
-	// @@ Please prefix class member variables with 'm'; e.g. mFoo or mBar
-        T data;
+        T mData;
 
-        Node next;
+        Node mNext;
 
         /**
          * Default constructor (no op).
@@ -233,10 +231,8 @@ public class ListArray<T extends Comparable<T>>
          * Construct a Node from a @a prev Node.
          */
         Node(Node prev) {
-	    // @@ This isn't necessary:
-            this();
-            next = prev.next;
-            prev.next = this;
+            mNext = prev.mNext;
+            prev.mNext = this;
         }
 
         /**
@@ -244,18 +240,18 @@ public class ListArray<T extends Comparable<T>>
          */
         Node(T value, Node prev) {
             this(prev);
-            data = value;
+            mData = value;
         }
 
         /**
          * Ensure all subsequent nodes are properly deallocated.
          */
         void prune() {
-            Node second = this.next;
+            Node second = this.mNext;
             while(second != null){
                 Node tmp = second;
-                second = second.next;
-                tmp.next = null;
+                second = second.mNext;
+                tmp.mNext = null;
             }
         }
 
@@ -267,9 +263,9 @@ public class ListArray<T extends Comparable<T>>
 
     private class NodeIterator implements Iterator<Node> {
 
-        private Node current = mHead;
+        private Node nCurrent = mHead;
 
-        private Node last;
+        private Node nLast;
 
         /**
          * Returns {@code true} if the iteration has more elements.
@@ -280,7 +276,7 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public boolean hasNext() {
-            return current.next != null;
+            return nCurrent.mNext != null;
         }
 
         /**
@@ -293,9 +289,9 @@ public class ListArray<T extends Comparable<T>>
         public Node next() {
             if(!hasNext())
                 throw new NoSuchElementException("Node doesn't exist");
-            last = current;
-            current = current.next;
-            return last;
+            nLast = nCurrent;
+            nCurrent = nCurrent.mNext;
+            return nCurrent;
         }
 
         /**
@@ -317,14 +313,11 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public void remove() {
-            if(last == null)
+            if(nLast == null)
                 throw new IllegalStateException("Node was already removed");
 
-            if(current == mHead){
-                mHead = current.next;
-            }else{
-                last.next = current.next;
-            }
+            nLast.mNext = nCurrent.mNext;
+            nLast = null;
             mSize--;
         }
     }
@@ -344,7 +337,7 @@ public class ListArray<T extends Comparable<T>>
          */
         @Override
         public T next() {
-            return iList.next().data;
+            return iList.next().mData;
         }
 
         /**
