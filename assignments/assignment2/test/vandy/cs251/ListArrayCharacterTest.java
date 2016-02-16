@@ -1,5 +1,6 @@
 package vandy.cs251;
 
+import junit.framework.AssertionFailedError;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
 
@@ -278,6 +279,15 @@ public class ListArrayCharacterTest {
         assertTrue (it.hasNext ());
         assertTrue (it.next () == 'b');
         assertTrue (it.hasNext () == false);
+
+        a.resize(1);
+
+        it = a.iterator ();
+        assertTrue (it.hasNext ());
+        assertTrue(it.next() == 'a');
+        if (it.hasNext()) {
+            throw new AssertionFailedError("Check your resize function!");
+        }
 
         exception.expect(NoSuchElementException.class);
         it.next ();

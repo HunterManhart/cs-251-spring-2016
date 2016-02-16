@@ -57,8 +57,9 @@ public class ListArray<T extends Comparable<T>>
 	    // @@ Consider building the list backwards.
             // Why? then I can't use this constructor and have to fencepost the mHead being connected at the end.
             // This would appear to only complicate code
+            // SP: Sassy. -3, listen to instructor feedback.
             new Node(defaultValue, here);
-            here = here.mNext;
+            here = here.mNext; // Feedback means to remove this line.
         }
 
         mDef = defaultValue;
@@ -77,6 +78,7 @@ public class ListArray<T extends Comparable<T>>
         T there;
         Node here = mHead;
 
+        // SP: -3, Incorrect usage of an iterator. Use while (it.hasNext()) or for (Node n : s.mHead)
         for(int i=0; i<s.size(); i++){
             there = it.next();
             new Node(there, here);
@@ -108,7 +110,7 @@ public class ListArray<T extends Comparable<T>>
 
             for(int i = size(); i<size; i++){
                 new Node(mDef, last);
-                last = last.mNext;
+                last = last.mNext; // SP: not necessary
             }
         }
         else if(size() > size){
@@ -138,7 +140,7 @@ public class ListArray<T extends Comparable<T>>
      * current bounds of the array.
      */
     public void set(int index, T value) {
-        rangeCheck(index);
+        rangeCheck(index); // SP: -3, unnecessary call listed in FMM.
 
         seek(index).mData = value;
     }
@@ -197,7 +199,7 @@ public class ListArray<T extends Comparable<T>>
                 return comparison;
             }
         }
-        int result = size() - s.size();
+        int result = size() - s.size(); // SP: one line return
         return result;
     }
 
@@ -247,6 +249,7 @@ public class ListArray<T extends Comparable<T>>
          * Ensure all subsequent nodes are properly deallocated.
          */
         void prune() {
+            // SP: -3, this is incorrect. It prunes from n + 2 instead of n + 1
             Node second = this.mNext;
             while(second != null){
                 Node tmp = second;
