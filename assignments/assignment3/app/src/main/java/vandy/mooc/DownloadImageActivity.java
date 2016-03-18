@@ -58,10 +58,10 @@ public class DownloadImageActivity
 
         // Always call super class for necessary
         // initialization/implementation.
-        // TODO -- you fill in here.
+        super.onCreate(savedInstanceState);
 
         // Set the default layout.
-        // TODO -- you fill in here.
+        setContentView(R.layout.download_image_activity);
 
         // Store the ProgressBar in a field for fast access.
         mLoadingProgressBar = (ProgressBar)
@@ -119,7 +119,7 @@ public class DownloadImageActivity
     protected void onStart() {
         // Always call super class for necessary
         // initialization/implementation.
-        // TODO - you fill in here.
+        super.onStart();
 
         // Make progress bar visible.
         mLoadingProgressBar.setVisibility(View.VISIBLE);
@@ -134,7 +134,7 @@ public class DownloadImageActivity
             // Download the image in the background, create an Intent
             // that contains the path to the image file, and set this
             // as the result of the Activity.
-            // TODO -- you fill in here.
+            thread = new Thread(new DownloadRunnable());
 
             // Create and start a new thread to Download and process
             // the image.
@@ -156,7 +156,7 @@ public class DownloadImageActivity
         // Always call super class for necessary
         // initialization/implementation and then log which lifecycle
         // hook method is being called.
-        // TODO - you fill in here.
+        super.onStop();
 
         // Dismiss the progress bar.
         mLoadingProgressBar.setVisibility(View.INVISIBLE);
@@ -187,14 +187,24 @@ public class DownloadImageActivity
      * the Activity.
      */
     private class DownloadRunnable implements Runnable {
-        // TODO -- you fill in here using the Android "HaMeR"
+        // fill in here using the Android "HaMeR"
         // concurrency framework. Note that the finish() method should
         // be called in the UI thread, whereas the other methods
         // should be called in the background thread. See
         // http://stackoverflow.com/questions/20412871/is-it-safe-to-finish-an-android-activity-from-a-background-thread
         // for more discussion about this topic.
         public void run() {
+            Uri pathToImage =
+                    mRetainedFragmentManager.get(IMAGEPATH);
 
+            setActivityResult(pathToImage);
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            });
         }
     }
 }

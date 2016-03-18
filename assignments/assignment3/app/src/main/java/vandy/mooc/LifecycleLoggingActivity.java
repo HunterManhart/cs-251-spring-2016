@@ -55,7 +55,8 @@ public abstract class LifecycleLoggingActivity
     protected void onStart() {
         // Always call super class for necessary
         // initialization/implementation.
-        // @@ TODO -- you fill in here.
+        super.onStart();
+        Log.d(TAG, "onStart(): activity start (prepare resources)");
     }
 
     /**
@@ -71,7 +72,8 @@ public abstract class LifecycleLoggingActivity
         // Always call super class for necessary
         // initialization/implementation and then log which lifecycle
         // hook method is being called.
-        // @@ TODO -- you fill in here.
+        super.onResume();
+        Log.d(TAG, "onResume(): activity resume (visible)");
     }
 
     /**
@@ -86,7 +88,8 @@ public abstract class LifecycleLoggingActivity
         // Always call super class for necessary
         // initialization/implementation and then log which lifecycle
         // hook method is being called.
-        // @@ TODO -- you fill in here.
+        super.onPause();
+        Log.d(TAG, "onPause(): activity paused (save persistent data)");
     }
 
     /**
@@ -99,7 +102,8 @@ public abstract class LifecycleLoggingActivity
         // Always call super class for necessary
         // initialization/implementation and then log which lifecycle
         // hook method is being called.
-        // @@ TODO -- you fill in here.
+        super.onStop();
+        Log.d(TAG, "onStop(): activity stopped (invisible)");
     }
 
     /**
@@ -111,7 +115,8 @@ public abstract class LifecycleLoggingActivity
         // Always call super class for necessary
         // initialization/implementation and then log which lifecycle
         // hook method is being called.
-        // @@ TODO -- you fill in here.
+        super.onRestart();
+        Log.d(TAG, "onRestart(): activity restarted");
     }
 
     /**
@@ -124,7 +129,8 @@ public abstract class LifecycleLoggingActivity
         // Always call super class for necessary
         // initialization/implementation and then log which lifecycle
         // hook method is being called.
-        // @@ TODO -- you fill in here.
+        super.onDestroy();
+        Log.d(TAG, "onDestroy(): activity destroyed (release resources)");
     }
 
 }

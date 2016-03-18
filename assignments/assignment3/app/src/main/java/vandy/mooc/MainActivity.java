@@ -67,14 +67,14 @@ public class MainActivity
     protected void onCreate(Bundle savedInstanceState) {
         // Always call super class for necessary
         // initialization/implementation.
-        // TODO -- you fill in here.
+        super.onCreate(savedInstanceState);
 
         // Set the default layout.
-        // TODO -- you fill in here.
+        setContentView(R.layout.activity_main);
         
         // Cache the EditText that holds the urls entered by the
         // user (if any).
-        // TODO -- you fill in here.
+        mUrlEditText = (EditText) findViewById(R.id.url);
     }
 
     @Override
@@ -108,7 +108,7 @@ public class MainActivity
             // Call startDownloadImageActivity() to create a new
             // Intent and start an Activity that downloads an image
             // from the URL given by the user.
-            // TODO - you fill in here.
+            startDownloadImageActivity(getUrl());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -125,32 +125,26 @@ public class MainActivity
                                     int resultCode,
                                     Intent data) {
         // Check if the started Activity completed successfully.
-        // TODO -- you fill in here, replacing true with the right
-        // code.
-        if (true) {
+        if (resultCode == RESULT_OK) {
             // Check if the request code is what we're expecting.
-            // TODO -- you fill in here, replacing true with the
-            // right code.
-            if (false) {
+            if (requestCode == DOWNLOAD_IMAGE_REQUEST) {
                 // Call the makeGalleryIntent() factory method to
                 // create an Intent that will launch the "Gallery" app
                 // by passing in the path to the downloaded image
                 // file.
-                // TODO -- you fill in here.
+                Intent gallery = makeGalleryIntent(data.toString());
 
                 // Allow user to click the download button again.
                 mProcessButtonClick = true;
 
                 // Start the Gallery Activity.
-                // TODO -- you fill in here.
+                startActivity(gallery);
             }
         }
         // Check if the started Activity did not complete successfully
         // and inform the user a problem occurred when trying to
         // download contents at the given URL.
-        // TODO -- you fill in here, replacing true with the right
-        // code.
-        else if (true) {
+        else if (!mProcessButtonClick) {
            showToast(this, "failed to download " + getUrl().toString());
         }
 
@@ -163,8 +157,6 @@ public class MainActivity
      */
     private Intent makeDownloadImageIntent(Uri url) {
         // Create an intent that will download the image from the web.
-        // TODO -- you fill in here, replacing "null" with the proper
-        // code.
         return new Intent(DownloadImageActivity.ACTION_DOWNLOAD_IMAGE,
                           url);
     }
@@ -176,9 +168,7 @@ public class MainActivity
     private Intent makeGalleryIntent(String pathToImageFile) {
         // Create an intent that will start the Gallery app to view
         // the image.
-        // TODO -- you fill in here, replacing "null" with the proper
-        // code.
-        return null;
+        return new Intent(Intent.ACTION_VIEW, Uri.parse(pathToImageFile));
     }
 
     /**
@@ -205,16 +195,12 @@ public class MainActivity
         // Make sure there's a non-null URL.
         if (url != null) {
             // Make sure that there's not already a download in progress.
-            // TODO -- you fill in here, replacing "true" with the
-            // proper code.
-            if (true)
+            if (!mProcessButtonClick)
                 showToast(this, 
                           "Already downloading image " 
                           + url);
             // Do a sanity check to ensure the URL is valid.
-            // TODO -- you fill in here, replacing "true" with the
-            // proper code.
-            else if (true) {
+            else if ( !URLUtil.isValidUrl(url.toString()) ) {
                 showToast(this,
                         "Invalid URL "
                                 + url.toString());
@@ -230,7 +216,7 @@ public class MainActivity
                 // which will download the image and then return the
                 // Uri for the downloaded image file via the
                 // onActivityResult() hook method.
-                // TODO -- you fill in here.
+                startActivity(intent);
             }
         }
     }
