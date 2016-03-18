@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.URLUtil;
@@ -124,6 +125,7 @@ public class MainActivity
     protected void onActivityResult(int requestCode,
                                     int resultCode,
                                     Intent data) {
+        // Log.d(TAG, "onActivityResult");
         // Check if the started Activity completed successfully.
         if (resultCode == RESULT_OK) {
             // Check if the request code is what we're expecting.
