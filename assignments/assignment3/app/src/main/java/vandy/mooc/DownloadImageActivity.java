@@ -194,6 +194,7 @@ public class DownloadImageActivity
         // http://stackoverflow.com/questions/20412871/is-it-safe-to-finish-an-android-activity-from-a-background-thread
         // for more discussion about this topic.
         public void run() {
+	    // @@ You're forgetting something important here!
             Uri pathToImage =
                     mRetainedFragmentManager.get(IMAGEPATH);
 
