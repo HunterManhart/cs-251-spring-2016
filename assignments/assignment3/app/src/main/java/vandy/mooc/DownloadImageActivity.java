@@ -194,8 +194,9 @@ public class DownloadImageActivity
         // http://stackoverflow.com/questions/20412871/is-it-safe-to-finish-an-android-activity-from-a-background-thread
         // for more discussion about this topic.
         public void run() {
-	    // @@ You're forgetting something important here!
-            final Uri downloadImage = DownloadUtils.downloadImage(getApplicationContext(), getIntent().getData());
+	        // Tried using  (Uri) mRetainedFragmentManager.get(URL) but it doesn't work
+            final Uri downloadImage = DownloadUtils.downloadImage(DownloadImageActivity.this,
+                    (Uri) mRetainedFragmentManager.get(URL));
 
             Log.d(TAG, "download runnable running");
 

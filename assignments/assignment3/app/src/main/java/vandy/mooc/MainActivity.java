@@ -139,7 +139,7 @@ public class MainActivity
                 // file.
                 Log.d(TAG, "Making gallery intent with " + data.getDataString());
 
-                Intent gallery = makeGalleryIntent(data.getDataString());
+                final Intent gallery = makeGalleryIntent(data.getDataString());
 
                 // Allow user to click the download button again.
                 mProcessButtonClick = true;
@@ -176,10 +176,8 @@ public class MainActivity
     private Intent makeGalleryIntent(String pathToImageFile) {
         // Create an intent that will start the Gallery app to view
         // the image.
-        Intent result = new Intent(Intent.ACTION_VIEW);
-        result.setDataAndType(Uri.parse("file://" + pathToImageFile), "image/*");
-
-        return result;
+        return new Intent(Intent.ACTION_VIEW).setDataAndType(Uri.parse("file://" + pathToImageFile),
+                "image/*");
     }
 
     /**
@@ -221,7 +219,7 @@ public class MainActivity
                 mProcessButtonClick = false;
 
                 // Make an intent to download the image.
-                Intent intent = makeDownloadImageIntent(url);
+                final Intent intent = makeDownloadImageIntent(url);
 
                 // Start the Activity associated with the Intent,
                 // which will download the image and then return the
