@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
@@ -125,20 +126,25 @@ public class MainActivity
     protected void onActivityResult(int requestCode,
                                     int resultCode,
                                     Intent data) {
-        // Log.d(TAG, "onActivityResult");
+        Log.d(TAG, "onActivityResult");
         // Check if the started Activity completed successfully.
         if (resultCode == RESULT_OK) {
+            Log.d(TAG, "Result code is RESULT_OK");
             // Check if the request code is what we're expecting.
             if (requestCode == DOWNLOAD_IMAGE_REQUEST) {
+                Log.d(TAG, "Request code is DOWNLOAD_IMAGE_REQUEST");
                 // Call the makeGalleryIntent() factory method to
                 // create an Intent that will launch the "Gallery" app
                 // by passing in the path to the downloaded image
                 // file.
-                Intent gallery = makeGalleryIntent(data.toString());
+                Log.d(TAG, "Making gallery intent with " + data.getDataString());
+
+                Intent gallery = makeGalleryIntent(data.getDataString());
 
                 // Allow user to click the download button again.
                 mProcessButtonClick = true;
 
+                Log.d(TAG, "Starting gallery intent");
                 // Start the Gallery Activity.
                 startActivity(gallery);
             }
@@ -146,7 +152,7 @@ public class MainActivity
         // Check if the started Activity did not complete successfully
         // and inform the user a problem occurred when trying to
         // download contents at the given URL.
-        else if (!mProcessButtonClick) {
+        else if (resultCode == RESULT_CANCELED) {
            showToast(this, "failed to download " + getUrl().toString());
         }
 
@@ -170,7 +176,10 @@ public class MainActivity
     private Intent makeGalleryIntent(String pathToImageFile) {
         // Create an intent that will start the Gallery app to view
         // the image.
-        return new Intent(Intent.ACTION_VIEW, Uri.parse(pathToImageFile));
+        Intent result = new Intent(Intent.ACTION_VIEW);
+        result.setDataAndType(Uri.parse("file://" + pathToImageFile), "image/*");
+
+        return result;
     }
 
     /**
@@ -218,7 +227,7 @@ public class MainActivity
                 // which will download the image and then return the
                 // Uri for the downloaded image file via the
                 // onActivityResult() hook method.
-                startActivity(intent);
+                startActivityForResult(intent, DOWNLOAD_IMAGE_REQUEST);
             }
         }
     }

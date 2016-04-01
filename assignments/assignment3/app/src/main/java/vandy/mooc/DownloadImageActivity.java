@@ -195,10 +195,11 @@ public class DownloadImageActivity
         // for more discussion about this topic.
         public void run() {
 	    // @@ You're forgetting something important here!
-            Uri pathToImage =
-                    mRetainedFragmentManager.get(IMAGEPATH);
+            final Uri downloadImage = DownloadUtils.downloadImage(getApplicationContext(), getIntent().getData());
 
-            setActivityResult(pathToImage);
+            Log.d(TAG, "download runnable running");
+
+            setActivityResult(downloadImage);
 
             runOnUiThread(new Runnable() {
                 @Override
