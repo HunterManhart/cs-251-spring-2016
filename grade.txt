@@ -1,0 +1,8 @@
+total 97/100
+
+execution 40/40
+structure 30/30
+insightful programming 10/10
+consistent style 10/10
+appropriate commenting style 10/10
+  -3 Do not remove the TODO's
