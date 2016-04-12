@@ -69,6 +69,10 @@ public class MainActivity
     protected void onCreate(Bundle savedInstanceState) {
         // Always call super class for necessary
         // initialization/implementation.
+<<<<<<< HEAD
+=======
+        // TODO -- you fill in here.
+>>>>>>> 70e26b10d8c031f64171b0b4aeb9f7577f7f6894
         super.onCreate(savedInstanceState);
 
         // Set the default layout.
@@ -94,7 +98,7 @@ public class MainActivity
 
         }
     }
-    
+
     /**
      * Called by the Android Activity framework when the user clicks
      * the "Download Image" button.
