@@ -49,12 +49,17 @@ public class DownloadImagesStartedService
                                     Uri directoryPathname,
                                     Handler downloadHandler) {
         // Create an intent that will download the image from the web.
-        // TODO -- you fill in here, replacing "null" with the proper
+        // TODO -- you fill in here, replacing "null" with the proper    done???
         // code, which involves (1) creating a RequestMessage
         // containing the various parameters passed into this method
         // and (2) storing this RequestMessage as a Message "extra" in
         // the Intent.
-        return null;
+        Messenger reply = new Messenger(downloadHandler);
+        RequestMessage request = RequestMessage.makeRequestMessage(requestCode, url,
+                directoryPathname, reply);
+        Intent result = new Intent(context, DownloadImagesStartedService.class);
+        result.putExtra(REQUEST_MESSAGE, request.getMessage());
+        return result;
     }
 
     /**
@@ -72,20 +77,26 @@ public class DownloadImagesStartedService
                 ((Message) intent.getParcelableExtra(REQUEST_MESSAGE));
 
         // Extract the URL for the image to download.
-        // TODO -- you fill in here.
+        // TODO -- you fill in here. maybe
+        Uri url = requestMessage.getImageURL();
+        Uri directory = requestMessage.getDirectoryPathname();
 
         // Download the requested image.
-        // TODO -- you fill in here.
+        // TODO -- you fill in here. done
+        Uri downloadPath = NetUtils.downloadImage(DownloadImagesStartedService.this, url, directory);
 
         // Extract the request code.
-        // TODO -- you fill in here.
+        // TODO -- you fill in here. done
+        int requestCode = requestMessage.getRequestCode();
 
         // Extract the Messenger stored in the RequestMessage.
-        // TODO -- you fill in here.
+        // TODO -- you fill in here. done
+        Messenger replyMessenger = requestMessage.getMessenger();
 
         // Send the path to the image file back to the
         // MainActivity via the messenger.
-        // TODO -- you fill in here.
+        // TODO -- you fill in here. done
+        sendPath(replyMessenger, downloadPath, url, requestCode);
     }
 
     /**
@@ -98,12 +109,15 @@ public class DownloadImagesStartedService
                           int requestCode) {
         // Call the makeReplyMessage() factory method to create
         // Message.
-        // TODO -- you fill in here.
-        
+        // TODO -- you fill in here. done
+        ReplyMessage replyMessage = ReplyMessage.makeReplyMessage(pathToImageFile, url, requestCode);
+
         try {
             // Send the path to the image file back to the
             // ImageModelImpl's Handler via the Messenger.
-            // TODO -- you fill in here.
+            // TODO -- you fill in here. maybe
+            Message reply = replyMessage.getMessage();
+            messenger.send(reply);
             throw new RemoteException();
         } catch (RemoteException e) {
             Log.e(getClass().getName(),
