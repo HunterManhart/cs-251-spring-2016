@@ -46,19 +46,23 @@ public class RequestMessage extends RequestReplyMessageBase {
         // Create a new Bundle and set it as the "data" for the
         // RequestMessage.
         // TODO -- you fill in here. done
+// @@ Could you be more concise?
         Bundle data = new Bundle();
         requestMessage.setData(data);
 
         // Set the URL to the image file into the Bundle.
         // TODO -- you fill in here. done
+// @@ Is/are there helper(s) that you should be using?
         data.putString(IMAGE_URL, url.toString());
 
         // Set the pathname to the directory into the Bundle.
         // TODO -- you fill in here. done
+// @@ Is/are there helper(s) that you should be using?
         data.putString(DIRECTORY_PATHNAME, directoryPathname.toString());
 
         // Set the request code into the Bundle.
         // TODO -- you fill in here. done
+// @@ Is/are there helper(s) that you should be using?
         data.putInt(REQUEST_CODE, requestCode);
 
         // Return the message to the caller.

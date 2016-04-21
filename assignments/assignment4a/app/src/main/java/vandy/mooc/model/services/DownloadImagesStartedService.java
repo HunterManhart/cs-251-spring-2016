@@ -54,6 +54,7 @@ public class DownloadImagesStartedService
         // containing the various parameters passed into this method
         // and (2) storing this RequestMessage as a Message "extra" in
         // the Intent.
+	// @@ Could you be more concise?
         Messenger reply = new Messenger(downloadHandler);
         RequestMessage request = RequestMessage.makeRequestMessage(requestCode, url,
                 directoryPathname, reply);
@@ -78,6 +79,7 @@ public class DownloadImagesStartedService
 
         // Extract the URL for the image to download.
         // TODO -- you fill in here. maybe
+	// @@ These should be final:
         Uri url = requestMessage.getImageURL();
         Uri directory = requestMessage.getDirectoryPathname();
 
@@ -118,6 +120,7 @@ public class DownloadImagesStartedService
             // TODO -- you fill in here. maybe
             Message reply = replyMessage.getMessage();
             messenger.send(reply);
+// @@ Why did you leave this in?
             throw new RemoteException();
         } catch (RemoteException e) {
             Log.e(getClass().getName(),
