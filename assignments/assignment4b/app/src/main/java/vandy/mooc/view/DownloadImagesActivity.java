@@ -6,8 +6,11 @@ import vandy.mooc.common.GenericActivity;
 import vandy.mooc.common.Utils;
 import vandy.mooc.model.ImageModel;
 import vandy.mooc.presenter.ImagePresenter;
+
+import android.Manifest;
 import android.app.ActionBar.LayoutParams;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -83,6 +86,12 @@ public class DownloadImagesActivity
         // MVP.RequiredViewOps instance.
         super.onCreate(ImagePresenter.class,
                        this);
+
+        if ((checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) !=
+                PackageManager.PERMISSION_GRANTED) ||        (checkSelfPermission(
+                Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED)) {
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.INTERNET}, 1);}
     }
 
     /**
