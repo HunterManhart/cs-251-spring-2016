@@ -80,8 +80,8 @@ public class DownloadImagesStartedService
         // Extract the URL for the image to download.
         // TODO -- you fill in here. maybe
 	// @@ These should be final:
-        Uri url = requestMessage.getImageURL();
-        Uri directory = requestMessage.getDirectoryPathname();
+        final Uri url = requestMessage.getImageURL();
+        final Uri directory = requestMessage.getDirectoryPathname();
 
         // Download the requested image.
         // TODO -- you fill in here. done
@@ -120,8 +120,6 @@ public class DownloadImagesStartedService
             // TODO -- you fill in here. maybe
             Message reply = replyMessage.getMessage();
             messenger.send(reply);
-// @@ Why did you leave this in?
-            throw new RemoteException();
         } catch (RemoteException e) {
             Log.e(getClass().getName(),
                   "Exception while sending reply message back to Activity.",
