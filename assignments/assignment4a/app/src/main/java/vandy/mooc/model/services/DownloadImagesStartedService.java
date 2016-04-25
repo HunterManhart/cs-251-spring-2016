@@ -49,15 +49,13 @@ public class DownloadImagesStartedService
                                     Uri directoryPathname,
                                     Handler downloadHandler) {
         // Create an intent that will download the image from the web.
-        // TODO -- you fill in here, replacing "null" with the proper    done???
+        // TODO -- you fill in here, replacing "null" with the proper    done
         // code, which involves (1) creating a RequestMessage
         // containing the various parameters passed into this method
         // and (2) storing this RequestMessage as a Message "extra" in
         // the Intent.
-	// @@ Could you be more concise?
-        Messenger reply = new Messenger(downloadHandler);
         RequestMessage request = RequestMessage.makeRequestMessage(requestCode, url,
-                directoryPathname, reply);
+                directoryPathname, new Messenger(downloadHandler));
         Intent result = new Intent(context, DownloadImagesStartedService.class);
         result.putExtra(REQUEST_MESSAGE, request.getMessage());
         return result;
@@ -78,8 +76,7 @@ public class DownloadImagesStartedService
                 ((Message) intent.getParcelableExtra(REQUEST_MESSAGE));
 
         // Extract the URL for the image to download.
-        // TODO -- you fill in here. maybe
-	// @@ These should be final:
+        // TODO -- you fill in here. done
         final Uri url = requestMessage.getImageURL();
         final Uri directory = requestMessage.getDirectoryPathname();
 
@@ -117,7 +114,7 @@ public class DownloadImagesStartedService
         try {
             // Send the path to the image file back to the
             // ImageModelImpl's Handler via the Messenger.
-            // TODO -- you fill in here. maybe
+            // TODO -- you fill in here. done
             Message reply = replyMessage.getMessage();
             messenger.send(reply);
         } catch (RemoteException e) {
