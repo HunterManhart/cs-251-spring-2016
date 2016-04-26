@@ -57,7 +57,7 @@ public class DownloadImagesStartedService
         // the Intent.
         RequestMessage request = RequestMessage.makeRequestMessage(requestCode, url,
                 directoryPathname, new Messenger(downloadHandler));
-        Intent result = new Intent(context, DownloadImagesStartedService.class);
+        final Intent result = new Intent(context, DownloadImagesStartedService.class);
         result.putExtra(REQUEST_MESSAGE, request.getMessage());
         return result;
     }

@@ -115,8 +115,7 @@ public class DownloadImagesStartedService
             // Send the path to the image file back to the
             // ImageModelImpl's Handler via the Messenger.
             // TODO -- you fill in here. done
-            Message reply = replyMessage.getMessage();
-            messenger.send(reply);
+            messenger.send(replyMessage.getMessage());
         } catch (RemoteException e) {
             Log.e(getClass().getName(),
                   "Exception while sending reply message back to Activity.",
